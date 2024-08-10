@@ -25,9 +25,11 @@ users = db.users
 @app.route("/api/createaccount", methods=["POST"])
 @limiter.limit("5 per hour")
 def mkaccount():
+    username = request.form.get('username')
+    password = request.form.get('password')
     user = {
-        'username': 'meep',
-        'displayname': 'meep the cool one',
+        'username': str(username),
+        'displayname': str(password),
         'password': 'bread',
         'timestamp': datetime.now()
     }
